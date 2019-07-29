@@ -1,0 +1,5 @@
+pipeline:
+  build:
+    image: node:12-alpine
+    commands:
+      - npm install
