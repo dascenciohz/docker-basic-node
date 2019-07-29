@@ -7,3 +7,5 @@
 2.- Tear down your APP.
 
     docker-compose down
+
+3.- Drone Test
