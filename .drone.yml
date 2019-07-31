@@ -9,14 +9,13 @@ steps:
 
 - name: rancher-deploy
   image: peloton/drone-rancher
-  envorontment:
-    RANCHER_URL:
-      from_secret: url
-    RANCHER_ACCESS_KEY:
-      from_secret: access_key
-    RANCHER_SECRET_KEY:
-      from_secret: secret_key
   settings:
+    url:
+      from_secret: RANCHER_URL
+    access_key:
+      from_secret: RANCHER_ACCESS_KEY
+    secret_key:
+      from_secret: RANCHER_SECRET_KEY
     service: web/basic-node
     docker_image: dascencio/basic-node
     start_first: true
