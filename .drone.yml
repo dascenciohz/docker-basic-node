@@ -16,6 +16,7 @@ steps:
       from_secret: RANCHER_ACCESS_KEY
     secret_key:
       from_secret: RANCHER_SECRET_KEY
+    service: development/basic-node
     docker_image: dascencio/basic-node
     start_first: true
     confirm: true
