@@ -1,15 +1,22 @@
-pipeline:
-  build:
-    image: node:12-alpine
-    commands:
-      - npm install
+kind: pipeline
+name: basic-node
 
-pipeline:
-  rancher:
-    image: peloton/drone-rancher
-    url: RANCHER_URL
-    access_key: RANCHER_ACCESS_KEY
-    secret_key: RANCHER_SECRET_KEY
+steps:
+- name: build
+  image: node:12-alpine
+  commands:
+  - npm install
+
+- name: rancher-deploy
+  image: peloton/drone-rancher
+  envorontment:
+    RANCHER_URL:
+      from_secret: url
+    RANCHER_ACCESS_KEY:
+      from_secret: access_key
+    RANCHER_SECRET_KEY:
+      from_secret: secret_key
+  settings:
     service: web/basic-node
     docker_image: dascencio/basic-node
     start_first: true
