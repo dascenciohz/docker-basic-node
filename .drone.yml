@@ -3,3 +3,15 @@ pipeline:
     image: node:12-alpine
     commands:
       - npm install
+
+pipeline:
+  rancher:
+    image: peloton/drone-rancher
+    url: ${RANCHER_URL}
+    access_key: ${RANCHER_ACCESS_KEY}
+    secret_key: ${RANCHER_SECRET_KEY}
+    service: web/basic-node
+    docker_image: dascencio/basic-node
+    start_first: true
+    confirm: true
+    timeout: 180
