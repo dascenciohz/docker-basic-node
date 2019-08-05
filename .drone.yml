@@ -8,7 +8,7 @@ steps:
   - npm install
 
 - name: deploy
-  image: bitnami/kubectl
+  image: dascencio/kubectl:1.0.0
   commands:
   - mkdir -p ~/.kube
   - echo $KUBE_CONFIG | base64 -d > .kube/config
