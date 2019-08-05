@@ -11,5 +11,4 @@ steps:
   image: dascencio/kubectl:1.0.0
   commands:
   - mkdir -p ~/.kube
-  - echo $KUBE_CONFIG | base64 -d > ~/.kube/config
-  - kubectl get nodes
+  - echo $KUBE_CONFIG
