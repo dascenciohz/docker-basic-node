@@ -9,6 +9,10 @@ steps:
 
 - name: deploy
   image: dascencio/kubectl:1.0.0
+  environment:
+    KUBECONFIG:
+      from_secret: KUBE_CONFIG
   commands:
   - mkdir -p ~/.kube
-  - echo $KUBE_CONFIG
+  - echo $KUBECONFIG | base64 -d > ~/.kube/config
+  - kubectl get nodes
