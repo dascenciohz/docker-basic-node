@@ -10,5 +10,6 @@ steps:
 - name: deploy
   image: bitnami/kubectl
   commands:
+  - mkdir -p ~/.kube
   - echo $KUBE_CONFIG | base64 -d > .kube/config
   - kubectl get nodes
