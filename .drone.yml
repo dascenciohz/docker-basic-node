@@ -7,17 +7,8 @@ steps:
   commands:
   - npm install
 
-- name: rancher-deploy
-  image: peloton/drone-rancher
-  settings:
-    url:
-      from_secret: RANCHER_URL
-    access_key:
-      from_secret: RANCHER_ACCESS_KEY
-    secret_key:
-      from_secret: RANCHER_SECRET_KEY
-    service: kubernetes/basic-node
-    docker_image: dascencio/basic-node
-    start_first: true
-    confirm: true
-    timeout: 180
+- name: deploy
+  image: bitnami/kubectl
+  commands:
+  - echo $KUBE_CONFIG | base64 -d > .kube/config
+  - kubectl get nodes
