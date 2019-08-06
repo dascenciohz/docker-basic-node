@@ -11,8 +11,8 @@ steps:
   image: dascencio/kubectl:1.0.0
   secrets: [ KUBE_CONFIG ]
   environment:
-    - KUBECONFIG="$$KUBE_CONFIG"
+    - KUBE_CONFIG="$$KUBE_CONFIG"
   commands:
   - mkdir -p ~/.kube
-  - echo $KUBECONFIG | base64 -d > ~/.kube/config
+  - echo $KUBE_CONFIG | base64 -d > ~/.kube/config
   - kubectl get nodes
