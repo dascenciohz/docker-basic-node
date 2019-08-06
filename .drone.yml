@@ -15,6 +15,5 @@ steps:
       from_secret: KUBE_CONFIG
   commands:
   - mkdir -p ~/.kube
-  - echo $K8S_CONFIG
   - echo $K8S_CONFIG | base64 -d > ~/.kube/config
-  - kubectl get nodes
+  - kubectl -n Default get pods
