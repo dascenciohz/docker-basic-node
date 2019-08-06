@@ -10,11 +10,9 @@ steps:
 - name: deploy
   image: dascencio/kubectl:1.0.0
   environment:
-    KUBECONFIG:
+    KUBE_CONFIG:
       from_secret: KUBE_CONFIG
   secrets: [ KUBE_CONFIG ]
   commands:
   - mkdir -p ~/.kube
-  - $KUBECONFIG | cat > ~/.kube/config.b64
-  - base64 -d ~/.kube/config.b64 > ~/.kube/config
-  - cat ~/.kube/config
+  - echo $KUBECONFIG
