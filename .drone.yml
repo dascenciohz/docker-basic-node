@@ -11,7 +11,7 @@ steps:
   image: dascencio/kubectl:1.0.0
   secrets: [ KUBE_CONFIG ]
   environment:
-    - KUBE_CONFIG=$$KUBE_CONFIG
+    KUBE_CONFIG=$$KUBE_CONFIG
   commands:
   - mkdir -p ~/.kube
   - echo $KUBE_CONFIG | base64 -d > ~/.kube/config
