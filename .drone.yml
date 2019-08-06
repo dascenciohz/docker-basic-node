@@ -12,5 +12,5 @@ steps:
   secrets: [ KUBE_CONFIG ]
   commands:
   - mkdir -p ~/.kube
-  - echo $KUBECONFIG | base64 -d > ~/.kube/config
+  - echo ${KUBECONFIG} | base64 -d > ~/.kube/config
   - kubectl get nodes
