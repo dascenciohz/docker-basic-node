@@ -16,4 +16,4 @@ steps:
   commands:
   - mkdir -p ~/.kube
   - echo $K8S_CONFIG | base64 -d > ~/.kube/config
-  - kubectl -n Default get pods
+  - kubectl get pods
