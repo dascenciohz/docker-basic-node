@@ -6,14 +6,31 @@ steps:
   image: node:12-alpine
   commands:
   - npm install
+  - echo -n "1.0.1" > .tags
 
-- name: deploy
-  image: dascencio/kubectl:1.0.0
-  secrets: [ KUBE_CONFIG ]
+- name: registry  
+  image: plugins/docker
   environment:
-    K8S_CONFIG:
-      from_secret: KUBE_CONFIG
+    USERNAME:
+      from_secret: DOCKER_USERNAME
+    PASSWORD:
+      from_secret: DOCKER_PASSWORD
   commands:
-  - mkdir -p ~/.kube
-  - echo $K8S_CONFIG | base64 -d > ~/.kube/config
-  - kubectl get pods
+  - DOCKER_USER=$(echo $USERNAME | base64 -d);
+  - DOCKER_PASS=$(echo $PASSWORD | base64 -d);
+  settings:
+    username: $DOCKER_USER
+    password: $DOCKER_PASS
+    repo: $DOCKER_USER/basic-node
+    dockerfile: Dockerfile
+
+#- name: deploy
+#  image: dascencio/kubectl:1.0.0
+#  secrets: [ KUBE_CONFIG ]
+#  environment:
+#    K8S_CONFIG:
+#      from_secret: KUBE_CONFIG
+#  commands:
+#  - mkdir -p ~/.kube
+#  - echo $K8S_CONFIG | base64 -d > ~/.kube/config
+#  - kubectl get pods
