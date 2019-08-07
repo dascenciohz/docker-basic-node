@@ -19,7 +19,7 @@ steps:
     dockerfile: Dockerfile
     tags: 
       - latest
-      - '1.0.2'
+      - '1.0.3'
 
 - name: deploy
   image: dascencio/kubectl:1.0.0
