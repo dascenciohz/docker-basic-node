@@ -6,23 +6,26 @@ steps:
   image: node:12-alpine
   commands:
   - npm install
-  - echo -n "1.0.1" > .tags
 
 - name: registry  
   image: plugins/docker
+  secrets: [ DOCKER_USERNAME, DOCKER_PASSWORD ]
   environment:
     USERNAME:
       from_secret: DOCKER_USERNAME
     PASSWORD:
       from_secret: DOCKER_PASSWORD
   commands:
-  - DOCKER_USER=$(echo $USERNAME | base64 -d);
-  - DOCKER_PASS=$(echo $PASSWORD | base64 -d);
+  - export DOCKER_USER=$(echo $USERNAME | base64 -d);
+  - export DOCKER_PASS=$(echo $PASSWORD | base64 -d);
   settings:
     username: $DOCKER_USER
     password: $DOCKER_PASS
     repo: $DOCKER_USER/basic-node
     dockerfile: Dockerfile
+    tags: 
+      - 1.0.1
+      - latest
 
 #- name: deploy
 #  image: dascencio/kubectl:1.0.0
