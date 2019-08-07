@@ -18,7 +18,7 @@ steps:
       from_secret: DOCKER_USERNAME
     password:
       from_secret: DOCKER_PASSWORD
-    repo: $DOCKER_USER/basic-node
+    repo: basic-node
     dockerfile: Dockerfile
     tags: 
       - 1.0.1
