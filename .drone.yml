@@ -15,7 +15,7 @@ steps:
       from_secret: DOCKER_USERNAME
     password:
       from_secret: DOCKER_PASSWORD
-    repo: basic-node
+    repo: dascencio/basic-node
     dockerfile: Dockerfile
     tags: 
     - latest
