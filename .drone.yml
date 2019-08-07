@@ -7,27 +7,27 @@ steps:
   commands:
   - npm install
 
-- name: registry  
-  image: plugins/docker
-  secrets: [ DOCKER_USERNAME, DOCKER_PASSWORD ]
-  settings:
-    username: 
-      from_secret: DOCKER_USERNAME
-    password:
-      from_secret: DOCKER_PASSWORD
-    repo: dascencio/basic-node
-    dockerfile: Dockerfile
-    tags: 
-    - latest
-    - '1.0.1'
+#- name: registry  
+#  image: plugins/docker
+#  secrets: [ DOCKER_USERNAME, DOCKER_PASSWORD ]
+#  settings:
+#    username: 
+#      from_secret: DOCKER_USERNAME
+#    password:
+#      from_secret: DOCKER_PASSWORD
+#    repo: dascencio/basic-node
+#    dockerfile: Dockerfile
+#    tags: 
+#    - latest
+#    - '1.0.1'
 
-#- name: deploy
-#  image: dascencio/kubectl:1.0.0
-#  secrets: [ KUBE_CONFIG ]
-#  environment:
-#    K8S_CONFIG:
-#      from_secret: KUBE_CONFIG
-#  commands:
-#  - mkdir -p ~/.kube
-#  - echo $K8S_CONFIG | base64 -d > ~/.kube/config
-#  - kubectl get pods
+- name: deploy
+  image: dascencio/kubectl:1.0.0
+  secrets: [ KUBE_CONFIG ]
+  environment:
+    K8S_CONFIG:
+      from_secret: KUBE_CONFIG
+  commands:
+  - mkdir -p ~/.kube
+  - echo $K8S_CONFIG | base64 -d > ~/.kube/config
+  - kubectl get pods
