@@ -11,16 +11,13 @@ steps:
   image: plugins/docker
   secrets: [ DOCKER_USERNAME, DOCKER_PASSWORD ]
   environment:
-    USERNAME:
+    DOCKER_USER:
       from_secret: DOCKER_USERNAME
-    PASSWORD:
-      from_secret: DOCKER_PASSWORD
-  commands:
-  - export DOCKER_USER=$(echo $USERNAME | base64 -d);
-  - export DOCKER_PASS=$(echo $PASSWORD | base64 -d);
   settings:
-    username: $DOCKER_USER
-    password: $DOCKER_PASS
+    username: 
+      from_secret: DOCKER_USERNAME
+    password:
+      from_secret: DOCKER_PASSWORD
     repo: $DOCKER_USER/basic-node
     dockerfile: Dockerfile
     tags: 
