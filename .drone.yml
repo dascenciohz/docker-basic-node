@@ -10,9 +10,6 @@ steps:
 - name: registry  
   image: plugins/docker
   secrets: [ DOCKER_USERNAME, DOCKER_PASSWORD ]
-  environment:
-    DOCKER_USER:
-      from_secret: DOCKER_USERNAME
   settings:
     username: 
       from_secret: DOCKER_USERNAME
@@ -21,8 +18,8 @@ steps:
     repo: basic-node
     dockerfile: Dockerfile
     tags: 
-      - 1.0.1
-      - latest
+    - latest
+    - '1.0.1'
 
 #- name: deploy
 #  image: dascencio/kubectl:1.0.0
